@@ -23,12 +23,16 @@ daily-learning-records/
 │   ├── 封装/
 │   ├── 静态/
 │   ├── 继承/
-│   └── 抽象类与接口/
+│   ├── 抽象类与接口/
+│   ├── 多态/
+│   └── Object类/
 └── MySQL/
     ├── 约束/
     ├── 视图/
     ├── 变量/
-    └── 存储过程/
+    ├── 存储过程/
+    ├── 存储函数/
+    └── 流程控制/
 ```
 
 ---
@@ -42,10 +46,14 @@ daily-learning-records/
 | Java | 静态 | [静态.md](Java/静态/静态.md) | [静态总结.java](Java/静态/静态总结.java) |
 | Java | 继承 | [继承.md](Java/继承/继承.md) | [继承总结.java](Java/继承/继承总结.java) |
 | Java | 抽象类与接口 | [抽象类与接口.md](Java/抽象类与接口/抽象类与接口.md) | [抽象类与接口总结.java](Java/抽象类与接口/抽象类与接口总结.java) |
+| Java | 多态 | [多态.md](Java/多态/多态.md) | [多态总结.java](Java/多态/多态总结.java) |
+| Java | Object类 | [Object类.md](Java/Object类/Object类.md) | [Object类总结.java](Java/Object类/Object类总结.java) |
 | MySQL | 约束 | [约束.md](MySQL/约束/约束.md) | [约束练习.sql](MySQL/约束/约束练习.sql) |
 | MySQL | 视图 | [视图.md](MySQL/视图/视图.md) | [视图练习.sql](MySQL/视图/视图练习.sql) |
 | MySQL | 变量 | [变量.md](MySQL/变量/变量.md) | [变量练习.sql](MySQL/变量/变量练习.sql) |
 | MySQL | 存储过程 | [存储过程.md](MySQL/存储过程/存储过程.md) | [存储过程练习.sql](MySQL/存储过程/存储过程练习.sql) |
+| MySQL | 存储函数 | [存储函数.md](MySQL/存储函数/存储函数.md) | [存储函数练习.sql](MySQL/存储函数/存储函数练习.sql) |
+| MySQL | 流程控制 | [流程控制.md](MySQL/流程控制/流程控制.md) | [流程控制练习.sql](MySQL/流程控制/流程控制练习.sql) |
 
 ---
 
