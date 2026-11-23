@@ -35,7 +35,7 @@ public class 异常总结 {
 		}
 		System.out.println("余额还剩："+a.看余额());	//100.0，钱没扣
 
-		//不catch就会往上抛，这里直接演示崩溃前的样子
+		//不catch就会往上抛，这里演示printStackTrace的输出
 		账户 b=new 账户(10);
 		try {
 			b.取钱(20);
