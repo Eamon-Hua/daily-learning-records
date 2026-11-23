@@ -21,7 +21,7 @@ public class IO流基础总结 {
 		文件.createNewFile();
 		System.out.println("存在:"+文件.exists()+"，是文件:"+文件.isFile());
 
-		//字节流：一个字节一个字节搬，万能但慢
+		//字节流：一个字节一个字节读，通用但慢
 		try(FileOutputStream out=new FileOutputStream(文件)) {
 			out.write("hello IO 你好".getBytes());
 		}
@@ -78,7 +78,7 @@ public class IO流基础总结 {
 		删干净(目录);
 	}
 
-	//递归遍历，listFiles对没权限目录返回null，判一下防炸
+	//递归遍历，listFiles对没权限目录返回null，判一下防空指针
 	public static void 列出来(File 目录,int 层) {
 		File[] files=目录.listFiles();
 		if(files==null) return;
