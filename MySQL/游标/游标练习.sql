@@ -1,0 +1,67 @@
+USE dbtest23;
+
+CREATE TABLE IF NOT EXISTS emp(
+id INT PRIMARY KEY AUTO_INCREMENT,
+ename VARCHAR(15),
+salary DOUBLE(10,2)
+);
+
+INSERT INTO emp(ename,salary) VALUES('张三',5000);
+INSERT INTO emp(ename,salary) VALUES('李四',8000);
+INSERT INTO emp(ename,salary) VALUES('王五',3000);
+
+SELECT * FROM emp;
+
+-- 游标四件套：变量、游标、HANDLER，顺序不能乱
+DELIMITER //
+
+CREATE PROCEDURE 播报低薪()
+BEGIN
+DECLARE done INT DEFAULT 0;
+DECLARE e_name VARCHAR(15);
+DECLARE e_salary DOUBLE(10,2);
+DECLARE cur CURSOR FOR SELECT ename,salary FROM emp WHERE salary<8000;
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET done=1;
+
+OPEN cur;
+读循环: LOOP
+FETCH cur INTO e_name,e_salary;
+IF done=1 THEN
+LEAVE 读循环;
+END IF;
+SELECT CONCAT(e_name,'：',e_salary,'，低于8000') AS 播报;
+END LOOP;
+CLOSE cur;
+END //
+
+CALL 播报低薪() //
+
+-- 游标配合更新逻辑：逐行判断，低薪涨10%
+CREATE PROCEDURE 给低薪涨钱()
+BEGIN
+DECLARE done INT DEFAULT 0;
+DECLARE eid INT;
+DECLARE cur CURSOR FOR SELECT id FROM emp WHERE salary<8000;
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET done=1;
+
+OPEN cur;
+涨钱循环: LOOP
+FETCH cur INTO eid;
+IF done=1 THEN
+LEAVE 涨钱循环;
+END IF;
+UPDATE emp SET salary=salary*1.1 WHERE id=eid;
+END LOOP;
+CLOSE cur;
+END //
+
+CALL 给低薪涨钱() //
+
+SELECT * FROM emp //
+
+DELIMITER ;
+
+SHOW PROCEDURE STATUS WHERE Db='dbtest23';
+
+DROP PROCEDURE 播报低薪;
+DROP PROCEDURE 给低薪涨钱;
