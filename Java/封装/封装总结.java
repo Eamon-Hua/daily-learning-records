@@ -1,5 +1,5 @@
 //封装的练习，2026.11.16
-//private 藏属性，getter/setter 开口子，this 区分成员和参数
+//private 隐藏属性，getter/setter 提供访问，this 区分成员和参数
 
 class 封装总结 {
 
@@ -12,7 +12,7 @@ class 封装总结 {
 		a.设余额(-500);
 		System.out.println(a.取余额());   //还是1000.0，-500没进去
 
-		//标准的 getter/setter 套路
+		//标准的 getter/setter 写法
 		员工 e=new 员工("张三",5000);
 		System.out.println(e.getName()+" "+e.getSalary());
 		e.setSalary(6000);
