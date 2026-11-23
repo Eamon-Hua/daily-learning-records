@@ -25,7 +25,7 @@ public class 常用类总结 {
 
 		//split的坑：.是正则的任意字符，必须转义
 		String ip="192.168.1.1";
-		System.out.println(ip.split("\\.").length);	//4，写成split(".")就完蛋
+		System.out.println(ip.split("\\.").length);	//4，不转义的话切出来是空数组
 		String list="a,b,c";
 		String[] parts=list.split(",");
 		System.out.println(parts[1]);			//b
