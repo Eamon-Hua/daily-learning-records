@@ -43,7 +43,7 @@ public class 集合进阶总结 {
 		班.sort((a,b)->a.名字.compareTo(b.名字));
 		System.out.println("lambda按名字:"+班);
 
-		//unmodifiableList：包出来的只读视图，add就炸
+		//unmodifiableList：包出来的只读视图，add就抛UnsupportedOperationException
 		List<Integer> 只读=Collections.unmodifiableList(nums);
 		try {
 			只读.add(100);
