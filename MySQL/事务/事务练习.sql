@@ -35,12 +35,12 @@ ROLLBACK;
 SELECT * FROM account;	-- 那笔-100回不去了
 DROP TABLE tmp_测试;
 
--- SAVEPOINT：大事务里的存档点，出事只退一段
+-- SAVEPOINT：大事务里的保存点，出事只退一段
 START TRANSACTION;
 UPDATE account SET money=money-100 WHERE NAME='张三';
-SAVEPOINT 存档1;
+SAVEPOINT 保存点1;
 UPDATE account SET money=money-100 WHERE NAME='张三';	-- 这步假装出错了
-ROLLBACK TO 存档1;	-- 只退到存档，第一个UPDATE保留
+ROLLBACK TO 保存点1;	-- 只退到保存点，第一个UPDATE保留
 COMMIT;
 SELECT * FROM account;
 
