@@ -17,13 +17,14 @@ phone VARCHAR(20) UNIQUE
 INSERT INTO t1(name,phone) VALUES('张三','110');
 INSERT INTO t1(name,phone) VALUES('李四',NULL);    -- unique 允许多个 NULL，有点反直觉
 
-INSERT INTO t1(name,phone) VALUES('王五','110');   -- 报错，phone 重复
+-- 唯一约束生效：phone 重复会报 Duplicate entry，这行故意留着注释
+-- INSERT INTO t1(name,phone) VALUES('王五','110');
 
 SELECT * FROM t1;
 
 -- 检查约束+默认值
 CREATE TABLE t2 (
-age INT CHECK(age>0 AND age<150),   -- 8.0.16 之前 CHECK 是摆设
+age INT CHECK(age>0 AND age<150),   -- 8.0.16 之前 CHECK 不生效
 gender CHAR(1) DEFAULT '男'
 );
 
@@ -31,7 +32,8 @@ INSERT INTO t2(age) VALUES(20);    -- gender 没填，用默认的'男'
 
 SELECT * FROM t2;
 
-INSERT INTO t2(age) VALUES(200);   -- 报错，CHECK 拦住了
+-- CHECK 生效：age=200 违反约束报 3819，这行故意留着注释
+-- INSERT INTO t2(age) VALUES(200);
 
 -- 外键：从表的 deptno 必须在主表里存在
 CREATE TABLE dept (
@@ -50,9 +52,11 @@ CONSTRAINT fk_emp_dept FOREIGN KEY(deptno) REFERENCES dept(deptno)
 
 INSERT INTO emp(ename,deptno) VALUES('张三',10),('李四',20);
 
-INSERT INTO emp(ename,deptno) VALUES('王五',30);   -- 报错，主表没有 30
+-- 外键生效：主表没有 30，插入报 1452，这行故意留着注释
+-- INSERT INTO emp(ename,deptno) VALUES('王五',30);
 
-DELETE FROM dept WHERE deptno=10;   -- 报错，emp 里还有人挂在这个部门
+-- 外键限制删除：emp 里还有人挂在部门 10，删除报 1452，这行故意留着注释
+-- DELETE FROM dept WHERE deptno=10;
 
 -- 级联删除：删部门连带删员工
 CREATE TABLE emp2 (
@@ -62,9 +66,10 @@ deptno INT,
 CONSTRAINT fk_emp2_dept FOREIGN KEY(deptno) REFERENCES dept(deptno) ON DELETE CASCADE
 );
 
-INSERT INTO emp2(ename,deptno) VALUES('张三',10);
+INSERT INTO dept VALUES(30,'测试部');
+INSERT INTO emp2(ename,deptno) VALUES('张三',30);
 
-DELETE FROM dept WHERE deptno=10;
+DELETE FROM dept WHERE deptno=30;
 
 SELECT * FROM emp2;   -- 空了，跟着删了
 
