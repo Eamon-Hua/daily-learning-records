@@ -39,7 +39,7 @@ EXPLAIN SELECT * FROM emp WHERE created>='2026-01-01' AND created<'2027-01-01';
 EXPLAIN SELECT * FROM emp WHERE salary+1000=6000;
 EXPLAIN SELECT * FROM emp WHERE salary=5000;	-- 运算挪到常量侧，走索引
 
--- 失效4：类型转换，phone是CHAR，不帶引号被偷偷转数字，key=NULL
+-- 失效4：类型转换，phone是CHAR，不带引号被隐式转数字，key=NULL
 EXPLAIN SELECT * FROM emp WHERE phone=13800000001;
 EXPLAIN SELECT * FROM emp WHERE phone='13800000001';	-- 带引号，走联合索引最左列
 
