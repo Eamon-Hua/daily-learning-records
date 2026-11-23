@@ -19,7 +19,7 @@ SELECT ename,salary,dept_id,
 AVG(salary) OVER(PARTITION BY dept_id) AS 部门平均
 FROM emp;
 
--- 排名三兄弟：并列时ROW_NUMBER强行分序号，RANK跳号，DENSE_RANK不跳号
+-- 排名函数对比：并列时ROW_NUMBER强行分序号，RANK跳号，DENSE_RANK不跳号
 -- 10部门两个8000并列，看三列的差别
 SELECT ename,salary,
 ROW_NUMBER() OVER(ORDER BY salary DESC) AS 序号,
@@ -46,7 +46,7 @@ SELECT ename,salary,
 SUM(salary) OVER(ORDER BY id) AS 累计工资
 FROM emp;
 
--- CTE：子查询提个名字，从上往下读不用剥洋葱
+-- CTE：子查询起个名字，从上往下读
 WITH 高薪 AS(
 SELECT * FROM emp WHERE salary>8000
 )
