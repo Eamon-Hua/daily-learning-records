@@ -2,7 +2,7 @@
 
 记于 2026.11.18
 
-Object 是所有类的祖宗——不写 extends，编译器也默认给你 `extends Object`。所以 Object 里的方法每个对象都有，最常碰的就是三个：**toString、equals、hashCode**。
+Object 是所有类的根父类——不写 extends，编译器也默认给你 `extends Object`。所以 Object 里的方法每个对象都有，最常用的是三个：**toString、equals、hashCode**。
 
 ## toString
 
@@ -32,12 +32,12 @@ System.out.println(d1 == d2);        // false，两个 new 出来地址不同
 System.out.println(d1.equals(d2));   // 也是 false！默认 equals 就是 ==
 ```
 
-两个"旺财"明明内容一样却说不相等——所以想让"内容相同就算相等"，就得重写 equals：
+两个"旺财"内容一样却返回 false——想让"内容相同就算相等"，就得重写 equals：
 
 ```java
 @Override
 public boolean equals(Object obj) {
-    if (this == obj) return true;              // 自己比自己，直接真
+    if (this == obj) return true;              // 自己和自己比，直接返回 true
     if (obj == null) return false;
     if (getClass() != obj.getClass()) return false;   // 类都不同，不可能相等
     狗 other = (狗) obj;
@@ -60,7 +60,7 @@ set.add(new 狗("旺财"));
 System.out.println(set.size());   // 不重写 hashCode 时输出 2！重写了输出 1
 ```
 
-结论：**重写 equals 就必须一起重写 hashCode**，IDEA Generate 也是俩一起生成的。
+结论：**重写 equals 就必须一起重写 hashCode**，IDEA Generate 也是两个一起生成的。
 
 ## == 和 equals 怎么选
 
