@@ -85,7 +85,7 @@ class 算术运算符总结 {
 		u=++u;
 		System.out.println(u);   //11
 
-		//+= 内部偷偷强转过，所以 short 用 += 不报错
+		//+= 内部自带强制类型转换，所以 short 用 += 不报错
 		short s=1;
 		//s=s+1;   这行编译不过
 		s+=1;
