@@ -41,7 +41,7 @@ public class 泛型与迭代总结 {
 			System.out.println(x);
 		}
 
-		//边遍历边删：必须用it.remove()，用list.remove()直接炸
+		//边遍历边删：必须用it.remove()，用list.remove()抛ConcurrentModificationException
 		Iterator<String> it=list.iterator();
 		while(it.hasNext()) {
 			String x=it.next();
@@ -51,18 +51,18 @@ public class 泛型与迭代总结 {
 		}
 		System.out.println(list);	//[a, c]
 
-		//验证坑：边遍历边改集合会炸——JDK25起放宽了"删刚访问过的元素"，但删光标后面的照样炸
+		//验证坑：边遍历边改集合会抛异常——JDK25起放宽了"删刚访问过的元素"，但删光标后面的照样抛
 		try {
 			for(String x:list) {
 				if("a".equals(x)) {
-					list.remove("d");	//d在光标后面，modCount对不上直接炸
+					list.remove("d");	//d在光标后面，modCount对不上抛ConcurrentModificationException
 				}
 			}
 		}catch(java.util.ConcurrentModificationException e) {
-			System.out.println("边遍历边list.remove光标后面的元素确实会炸");
+			System.out.println("边遍历边list.remove光标后面的元素确实抛CME");
 		}
 
-		//偷懒的替代写法：removeIf一步到位，把c删掉
+		//过滤删除：removeIf一步到位，把c删掉
 		list.removeIf(x->x.equals("c"));
 		System.out.println(list);	//[a]
 	}
