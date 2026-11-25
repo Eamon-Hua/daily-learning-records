@@ -74,7 +74,3 @@ SELECT * FROM emp WHERE deptno = 3 ORDER BY salary;
 ## 失效写法复习
 
 索引操作篇记过的六种失效（左模糊、列上运算、类型转换、最左前缀断裂、OR 半边无索引、NOT IN）在优化语境下全部适用，写完 SQL 用 EXPLAIN 确认。
-
----
-
-SQL 在同目录 `SQL优化练习.sql`，建的是 dbtest30，直接整份跑。
