@@ -56,6 +56,6 @@ class 配置 {
 	static String 值="默认";
 
 	static {
-		System.out.println("配置加载好了");   //只在类第一次被用到时执行一次
+		System.out.println("配置加载好了");   //只在类首次被加载时执行一次
 	}
 }
