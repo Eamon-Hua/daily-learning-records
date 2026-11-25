@@ -41,7 +41,7 @@ try (FileInputStream in = new FileInputStream("源.txt");
 
 **try-with-resources 必须用**：流是资源，用完必须 close。写在 try 的括号里，语句结束时自动调用 close（流都实现了 AutoCloseable），不会遗漏。
 
-一个字节一个字节读太慢，实际都配缓冲流（下面说）。另一种提速方式是读进 byte 数组：
+单字节读写的 IO 次数多，效率低，通常配合缓冲流（见下文）。另一种提速方式是读进 byte 数组：
 
 ```java
 byte[] buf = new byte[1024];
