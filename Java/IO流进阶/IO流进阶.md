@@ -31,7 +31,7 @@ public class 学生 implements Serializable {
 }
 ```
 
-不写的话 JVM 按类的结构自动算一个。写入时的类和读取时的类只要改过任何一个成员，自动算出的值就对不上，readObject 直接抛 InvalidClassException——这个报错第一次遇到很难定位。显式声明成固定值，类小改（加个方法）也能继续读；成员改名/删掉，对应字段读出来是 null/默认值，不炸。
+不写的话 JVM 按类的结构自动算一个。写入时的类和读取时的类只要改过任何一个成员，自动算出的值就对不上，readObject 直接抛 InvalidClassException。显式声明成固定值，类小改（加个方法）也能继续读；成员改名/删掉，对应字段读出来是 null/默认值，不会抛异常。
 
 两个不参与序列化的成员：
 
@@ -80,7 +80,7 @@ try (PrintWriter pw = new PrintWriter(new FileWriter("log.txt"), true)) {  // tr
 
 特点：**println / printf 不抛 IOException**（内部吞了异常，可用 checkError() 查），所以写起来不用套 try-catch 每一行。println 底层是 `write(String) + newLine()`。
 
-PrintWriter 带 autoFlush 参数（构造器第二个参数 true），每次 println 自动刷缓冲；FileWriter 是有缓冲的，不 flush/close 内容不落盘——上次基础篇记过这个坑，打印流这里用一个 autoFlush 参数解决。
+PrintWriter 带 autoFlush 参数（构造器第二个参数 true），每次 println 自动刷缓冲；FileWriter 是有缓冲的，不 flush/close 内容不落盘，打印流的 autoFlush 参数解决这个问题。
 
 ## File 递归遍历：带过滤
 
