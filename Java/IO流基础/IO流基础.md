@@ -83,7 +83,3 @@ try (BufferedReader br = new BufferedReader(new FileReader("a.txt"))) {
 BufferedReader.readLine() 一次读一行（不含换行符，返回 null 是读完了），BufferedWriter.newLine() 写换行——文本处理基本就靠这两个。
 
 包装的方向别搞反：**处理流包节点流，节点流不包处理流**。
-
----
-
-代码在同目录 `IO流基础总结.java`，能直接跑（会在当前目录建几个测试文件，跑完自动删）。
