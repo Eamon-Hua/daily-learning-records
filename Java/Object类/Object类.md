@@ -66,7 +66,3 @@ System.out.println(set.size());   // 不重写 hashCode 时输出 2！重写了�
 
 - 基本类型（int、double 等）只能用 ==，比的就是值
 - 引用类型：== 永远比地址；想比内容用 equals（前提是这个类重写过，String 包装类都重写了；自己写的类得自己重写）
-
----
-
-代码在同目录 `Object类总结.java`，能直接跑。
